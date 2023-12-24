@@ -64,7 +64,7 @@ export default function SignInTemplateID() {
                   if (!error) {
                     putAccessToken(data.accessToken);
                     setUserLoggedInBoolean(true);
-                    navigate("/notes/unarchived");
+                    navigate("/notes/active");
                   }
                   setSubmitting(false);
                 } catch (error) {

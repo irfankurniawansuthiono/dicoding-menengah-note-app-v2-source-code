@@ -83,9 +83,14 @@ export const NotesDetailsTemplate = () => {
         {language === "en" ? "Notes ID : " : "ID Catatan : "}
         {data.id}
       </Text>
-      <Button onClick={() => navigate(-1)}>Back</Button>
+      <Button onClick={() => navigate(-1)}>
+        {language === "en" ? "Back" : "Kembali"}
+      </Button>
     </>
   ) : (
-    <Heading> Not Found </Heading>
+    <Heading>
+      {" "}
+      {language === "en" ? "Notes Not Found" : "Catatan Tidak Ditemukan"}{" "}
+    </Heading>
   );
 };

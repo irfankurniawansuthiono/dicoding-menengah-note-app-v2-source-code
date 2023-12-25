@@ -84,7 +84,6 @@ export default function SignUpTemplateID() {
                   };
                   const response = await register(valuesPost);
                   if (!response.error) {
-                    alert("Login Success");
                     navigate("/signin");
                   } else {
                     alert("something went wrong");

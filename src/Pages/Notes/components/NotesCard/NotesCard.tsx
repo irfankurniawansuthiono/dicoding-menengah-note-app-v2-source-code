@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useUserLoggedDataStore } from "../../../../Zustand/UserLoggedDataStoreZustand";
 import ActionNotesButton from "../ActionNotesButton/ActionNotesButton";
+import PropTypes from "prop-types";
 
 type NoteCardTemplateProps = {
   id: string;
@@ -17,7 +18,14 @@ type NoteCardTemplateProps = {
   link: string;
   archived: boolean;
 };
-
+NoteCardTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+};
 export default function NoteCardTemplate({
   id,
   title,

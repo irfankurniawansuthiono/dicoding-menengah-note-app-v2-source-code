@@ -1,5 +1,5 @@
 import { putAccessTokenProps, fetchWithTokenProps, loginProps, registerProps, addNoteProps, getNoteProps, getArchivedNotesProps, deleteNoteProps, unArchiveNoteProps } from "./ApiType";
-
+import PropTypes from "prop-types";
 const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
 function getAccessToken() {
@@ -9,7 +9,9 @@ function getAccessToken() {
 function putAccessToken(accessToken : putAccessTokenProps) {
   return localStorage.setItem('accessToken', accessToken );
 }
-
+putAccessToken.propTypes = {
+  accessToken: PropTypes.string.isRequired,
+}
 async function fetchWithToken({ url, options = {} }: fetchWithTokenProps) {
   return fetch(url, {
     ...options,
@@ -18,6 +20,11 @@ async function fetchWithToken({ url, options = {} }: fetchWithTokenProps) {
       Authorization: `Bearer ${getAccessToken()}`,
     },
   });
+}
+
+fetchWithToken.propTypes = {
+  url: PropTypes.string.isRequired,
+  options: PropTypes.object,
 }
 
 async function login({ email, password } : loginProps) {
@@ -39,6 +46,11 @@ async function login({ email, password } : loginProps) {
   return { error: false, data: responseJson.data };
 }
 
+login.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+}
+
 async function register({ name, email, password } : registerProps) {
   const response = await fetch(`${BASE_URL}/register`, {
     method: 'POST',
@@ -56,6 +68,12 @@ async function register({ name, email, password } : registerProps) {
   }
 
   return { error: false };
+}
+
+register.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
 }
 
 async function getUserLogged() {
@@ -85,6 +103,11 @@ async function addNote({ title, body } : addNoteProps) {
   }
 
   return { error: false, data: responseJson.data };
+}
+
+addNote.propTypes = {
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
 }
 
 async function getActiveNotes() {
@@ -120,6 +143,10 @@ async function getNote({ id } : getNoteProps) {
   return { error: false, data: responseJson.data };
 }
 
+getNote.propTypes = {
+  id: PropTypes.string.isRequired,
+}
+
 async function archiveNote({id}: getArchivedNotesProps) {
   const response = await fetchWithToken({url : `${BASE_URL}/notes/${id}/archive`, options:  {
     method: 'POST',
@@ -132,6 +159,10 @@ async function archiveNote({id}: getArchivedNotesProps) {
   }
 
   return { error: false, data: responseJson.data };
+}
+
+archiveNote.propTypes = {
+  id: PropTypes.string.isRequired,
 }
 
 async function unarchiveNote({id}: unArchiveNoteProps) {
@@ -148,6 +179,10 @@ async function unarchiveNote({id}: unArchiveNoteProps) {
   return { error: false, data: responseJson.data };
 }
 
+unarchiveNote.propTypes = {
+  id: PropTypes.string.isRequired,
+}
+
 async function deleteNote({id} : deleteNoteProps) {
   const response = await fetchWithToken({url : `${BASE_URL}/notes/${id}`, options:  {
     method: 'DELETE',
@@ -160,6 +195,10 @@ async function deleteNote({id} : deleteNoteProps) {
   }
 
   return { error: false, data: responseJson.data };
+}
+
+deleteNote.propTypes = {
+  id: PropTypes.string.isRequired,
 }
 
 export {

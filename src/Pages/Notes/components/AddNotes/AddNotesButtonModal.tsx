@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import { SlNote } from "react-icons/sl";
 import { useRef } from "react";
-
 import { IoAddOutline } from "react-icons/io5";
 import { Formik } from "formik";
 import { useLanguageStore } from "../../../../Zustand/UserPreferences";

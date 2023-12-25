@@ -7,9 +7,10 @@ import SignInPage from "./Pages/SignInPage/page/SignInPage";
 import SignUpPage from "./Pages/SignUpPage/page/SignUpPage";
 import HomePage from "./Pages/HomePage/page/HomePage";
 import Notes from "./Pages/Notes/page/Notes";
-import NotesActiveList from "./Pages/Notes/NotesUnarchivedList/page/NotesActiveList";
+import NotesActiveList from "./Pages/Notes/NotesActiveList/page/NotesActiveList";
 import NotesArchivedList from "./Pages/Notes/NotesArchivedList/page/NotesArchivedList";
 import NotesDetails from "./Pages/Notes/NotesDetails/page/NotesDetails";
+import Page404 from "./Pages/Page404/Page404";
 function App() {
   return (
     <>
@@ -52,6 +53,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>
     </>

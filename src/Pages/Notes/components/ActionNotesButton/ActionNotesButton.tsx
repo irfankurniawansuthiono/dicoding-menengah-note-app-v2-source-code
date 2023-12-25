@@ -1,4 +1,5 @@
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useLanguageStore } from "../../../../Zustand/UserPreferences";
 import { archiveNote, deleteNote, unarchiveNote } from "../../../../Api/Api";
@@ -8,6 +9,12 @@ type ActionNotesButtonProps = {
   id: string;
   archived: boolean;
   link?: string;
+};
+
+ActionNotesButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+  link: PropTypes.string,
 };
 export default function ActionNotesButton({
   link,
